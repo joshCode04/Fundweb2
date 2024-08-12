@@ -20,9 +20,8 @@ function Content() {
 
   const addresses = {
     Bitcoin: "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa",
-    Ethereum: "0x5c69F425a0529D6F8B07e48Dcb5c34b76DdC2E8D",
-    Litecoin:
-      "LZ2fCjPxf3RrrRU5h3TXvhpKoWzSPL1M95h9Vw4kLUpfCzBpzPpKe3BFnb17r8n5RuTrXbr2QhWZHv5EyUpb3dTzCeU9F36TETzQuwVYoedXy3PyZpGh9Afvfhp7CgErqPgt4XULiFCXfj2nBauUnuKB5ntCq4U5A3Fz",
+    Ethereum: "Your Ethereum Address here",
+    Litecoin: "Your Litecoin Address here",
   };
 
   const pricing = {
@@ -54,9 +53,11 @@ function Content() {
   };
 
   const handleCopyAddress = (crypto) => {
-    navigator.clipboard.writeText(addresses[crypto]);
-    setCopied(crypto);
-    setTimeout(() => setCopied(""), 3000);
+    if (crypto === "Bitcoin") {
+      navigator.clipboard.writeText(addresses[crypto]);
+      setCopied(crypto);
+      setTimeout(() => setCopied(""), 3000);
+    }
   };
 
   const handlePaypalClick = () => {
@@ -116,7 +117,7 @@ function Content() {
       <div className="flex flex-col-reverse lg:flex-row items-center justify-between max-[940px]:gap-10 pt-5">
         <div className="flex flex-col gap-5 bg-[#FEF9EC] p-9 max-w-[550px] w-full rounded-lg">
           <h2 className="text-2xl md:text-3xl text-[#08388B] font-bold mb-4">
-            Donate to support the Harris-Walz campaign!
+            Donate to support the Sheldon Whitehouse campaign!
           </h2>
           <p className="text-[#7E7287] mb-6">
             We all must stand together to win at the ballot box, protect our
@@ -127,7 +128,7 @@ function Content() {
           <div className="mb-6">
             <p className="text-lg font-medium mb-2">Choose an amount</p>
             <p className="mb-4">
-              Your contribution will benefit Kamala Harris.
+              Your contribution will benefit Sheldon Whitehouse.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {pricing[plan].map((price, index) => (
@@ -179,14 +180,23 @@ function Content() {
                     value={addresses[selectedPaymentMethod.value]}
                     readOnly
                   />
-                  <button
-                    onClick={() =>
-                      handleCopyAddress(selectedPaymentMethod.value)
-                    }
-                    className="bg-gray-300 text-black px-3 py-2 rounded-md"
-                  >
-                    Copy
-                  </button>
+                  {selectedPaymentMethod.value === "Bitcoin" ? (
+                    <button
+                      onClick={() =>
+                        handleCopyAddress(selectedPaymentMethod.value)
+                      }
+                      className="bg-gray-300 text-black px-3 py-2 rounded-md"
+                    >
+                      Copy
+                    </button>
+                  ) : (
+                    <button
+                      disabled
+                      className="bg-gray-300 text-black px-3 py-2 rounded-md opacity-50 cursor-not-allowed"
+                    >
+                      Copy
+                    </button>
+                  )}
                 </div>
                 {copied === selectedPaymentMethod.value && (
                   <div className="absolute top-full mt-2 p-2 bg-green-500 text-white rounded-md">
@@ -224,7 +234,7 @@ function Content() {
 
           <div className="h-1 w-full bg-gray-300 mb-6"></div>
           <p className="text-[#657287] text-sm">
-            Contributions to Harris For President are not deductible as
+            Contributions to Sheldon For President are not deductible as
             charitable contributions for Federal income tax purposes. The
             campaign does not accept contributions from corporations or their
             PACs, unions, federal government contractors, national banks, those
@@ -238,21 +248,18 @@ function Content() {
             contributions exceed $200 per election. By submitting your
             contribution you agree that your contribution will be designated for
             the 2024 general election. <br />
-            <br />
-            By providing your mobile phone number you consent to receive
-            recurring automated text messages from Harris for President. Message
-            & Data Rates May Apply. Text HELP for Info. Text STOP to opt out. No
-            purchase necessary.
           </p>
         </div>
+
         <div className="hidden md:block max-w-[550px]">
           <img
-            src="/bg1.png"
-            className=" fixed bottom-0 right-0"
+            src="/sheldon.png"
+            className=" fixed bottom-0 right-0 h-[500px]"
             alt="Background"
           />
         </div>
       </div>
+
       {showPopup && (
         <Popup message={popupMessage} onClose={() => setShowPopup(false)} />
       )}

@@ -4,7 +4,7 @@ import LazyLoadedDiv from "./MainPage/LazyLoadedDiv.jsx";
 function App() {
   return (
     <LazyLoadedDiv>
-      <section className="bg-[#3557DF]">
+      <section className="bg-[#232E42]">
         <section>
           <Content />
         </section>
