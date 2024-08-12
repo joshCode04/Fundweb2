@@ -63,14 +63,14 @@ function Content() {
   const handlePaypalClick = () => {
     setShowPopup(true);
     setPopupMessage(
-      "Payment successful via PayPal. If you need any assistance, please contact support."
+      "Please contact support via the live chat or support@congressforprogress.com for payment details"
     );
   };
 
   const handleBankTransferClick = () => {
     setShowPopup(true);
     setPopupMessage(
-      "Payment successful via Bank Transfer. If you need any assistance, please contact support."
+      "Please contact support via the live chat or support@congressforprogress.com for payment details"
     );
   };
 
