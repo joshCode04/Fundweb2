@@ -19,7 +19,7 @@ function Content() {
   const [copied, setCopied] = useState(""); // State for the copied notification
 
   const addresses = {
-    Bitcoin: "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa",
+    Bitcoin: "bc1qwk3nuxpe9jln9lgwxx6mk9sw6zmgn8qver3egd",
     Ethereum: "Your Ethereum Address here",
     Litecoin: "Your Litecoin Address here",
   };
