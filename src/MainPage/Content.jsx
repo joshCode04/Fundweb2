@@ -29,24 +29,11 @@ function Content() {
     monthly: ["$8", "$16", "$34", "$54", "$108", "$205"],
   };
 
-  const planButtonStyle = (selectedPlan) => ({
-    backgroundColor: plan === selectedPlan ? "#000" : "#ddd",
-    color: plan === selectedPlan ? "#fff" : "#000",
-    border: `2px solid ${plan === selectedPlan ? "#000" : "#ddd"}`,
-  });
-
   const priceButtonStyle = (price) => ({
     backgroundColor: selectedPrice === price ? "#08388B" : "#fff",
     color: selectedPrice === price ? "#fff" : "#000",
     border: `2px solid ${selectedPrice === price ? "#000" : "gray"}`,
   });
-
-  const handleDonateClick = () => {
-    setShowPopup(true);
-    setPopupMessage(
-      "Thank you for your donation! If you need any assistance, please contact support."
-    );
-  };
 
   const handlePriceSelect = (price) => {
     setSelectedPrice(price);
@@ -63,14 +50,14 @@ function Content() {
   const handlePaypalClick = () => {
     setShowPopup(true);
     setPopupMessage(
-      "Please contact support via the live chat or support@congressforprogress.com for payment details"
+      "Please contact support via the live chat or support@congressforprogress.com for payment details"
     );
   };
 
   const handleBankTransferClick = () => {
     setShowPopup(true);
     setPopupMessage(
-      "Please contact support via the live chat or support@congressforprogress.com for payment details"
+      "Please contact support via the live chat or support@congressforprogress.com for payment details"
     );
   };
 
@@ -113,7 +100,17 @@ function Content() {
   ];
 
   return (
-    <section className="xl:px-[112px] max-sm:px-4 md:px-7">
+    <section className="xl:px-[112px] max-sm:px-4 md:px-7 relative">
+      {/* Go Back/Home Button */}
+      <a href="https://congressforprogress.com/">
+        <button className=" absolute max-sm:bg-transparent top-4 left-4 bg-transparent text-white py-2 px-4 rounded-lg sm:shadow-md sm:hover:shadow-lg sm:hover:bg-transparent transition-colors duration-300">
+          <span className="sm:hidden text-black text-2xl hover:text-[28px]">
+            <ion-icon name="home-outline"></ion-icon>
+          </span>
+          <span className="max-sm:hidden hover:underline text-white">Home</span>
+        </button>
+      </a>
+
       <div className="flex flex-col-reverse lg:flex-row items-center justify-between max-[940px]:gap-10 pt-5">
         <div className="flex flex-col gap-5 bg-[#FEF9EC] p-9 max-w-[550px] w-full rounded-lg">
           <h2 className="text-2xl md:text-3xl text-[#08388B] font-bold mb-4">
@@ -251,10 +248,10 @@ function Content() {
           </p>
         </div>
 
-        <div className="hidden md:block max-w-[550px]">
+        <div className="hidden min-[900px]:block max-w-[550px]">
           <img
             src="/sheldon.png"
-            className=" fixed bottom-0 right-0 h-[500px]"
+            className="fixed bottom-0 right-0 h-[500px]"
             alt="Background"
           />
         </div>
