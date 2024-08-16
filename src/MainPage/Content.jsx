@@ -20,7 +20,7 @@ function Content() {
 
   const addresses = {
     Bitcoin: "bc1qwk3nuxpe9jln9lgwxx6mk9sw6zmgn8qver3egd",
-    Ethereum: "Your Ethereum Address here",
+    Ethereum: "0x13e93622645d7d5Cb862fA32caB5127499Ca1427",
     Litecoin: "Your Litecoin Address here",
   };
 
@@ -40,8 +40,9 @@ function Content() {
   };
 
   const handleCopyAddress = (crypto) => {
-    if (crypto === "Bitcoin") {
-      navigator.clipboard.writeText(addresses[crypto]);
+    const address = addresses[crypto];
+    if (address) {
+      navigator.clipboard.writeText(address);
       setCopied(crypto);
       setTimeout(() => setCopied(""), 3000);
     }
@@ -146,7 +147,7 @@ function Content() {
               type="text"
               className="border rounded-md p-2 w-full"
               value={selectedPrice || pricing[plan][1]} // Display selected price or second option as default
-              onChange={(e) => setSelectedPrice(e.target.value)} // Allow manual input as well
+              onChange={(e) => setSelectedPrice(e.target.value)}
             />
             <select className="border rounded-md p-2">
               <option value="$">$</option>
@@ -177,7 +178,8 @@ function Content() {
                     value={addresses[selectedPaymentMethod.value]}
                     readOnly
                   />
-                  {selectedPaymentMethod.value === "Bitcoin" ? (
+                  {selectedPaymentMethod.value === "Bitcoin" ||
+                  selectedPaymentMethod.value === "Ethereum" ? (
                     <button
                       onClick={() =>
                         handleCopyAddress(selectedPaymentMethod.value)
